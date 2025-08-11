@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { UserModel } = require("../model/UserModel");
+const { io } = require("../services/Socket.io");
 
 // JWT SECRET KEY
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
@@ -100,6 +101,10 @@ const loginUser = async (req, res) => {
       JWT_SECRET_KEY,
       { expiresIn: "24h" }
     );
+
+    io.socketsJoin("chatApp");
+    // const connectedUsers = io.in("chatApp").fetchSockets();
+    // console.log("connected users", connectedUsers);
 
     // sending final response
     res

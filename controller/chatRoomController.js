@@ -34,7 +34,7 @@ const getBroadcastMessageOfRoom = async (req, res) => {
 
     // TODO add verification and edge case
 
-    const data = await chatRoomModal.find();
+    const data = await chatRoomModal.find().populate("senderId");
 
     res.status(201).json(data);
   } catch (err) {

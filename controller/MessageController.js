@@ -97,10 +97,10 @@ const sendMessage = async (req, res) => {
     });
 
     // saving msg in db
-    newMsg.save();
+    await newMsg.save();
 
     // emitting the msg
-    io.emit("newMessage", newMsg);
+    io.to(senderId).to(receiverId).emit("newMessage", newMsg);
 
     // resending response
     res.status(201).json({ msg: "msg send", data: newMsg });

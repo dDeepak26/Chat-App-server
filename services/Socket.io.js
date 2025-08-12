@@ -11,11 +11,28 @@ const io = new Server(server, {
   },
 });
 
+// to store the active user id
+let activeUsers = {};
+
 io.on("connection", (socket) => {
   console.log("user connected with Id: ", socket.id);
 
+  // making user to join the chatApp room
+  socket.join("chatApp");
+
+  const userId = socket.handshake.query.userId;
+  if (userId) {
+    socket.join(userId);
+    activeUsers[userId] = socket.id;
+  }
+
+  // emitting the active user list
+  io.emit("getOnlineUsers", Object.keys(activeUsers));
+
   socket.on("disconnect", () => {
     console.log("user disconnected with Id: ", socket.id);
+    delete activeUsers[userId];
+    io.emit("getOnlineUsers", Object.keys(activeUsers));
   });
 });
 

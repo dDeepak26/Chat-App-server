@@ -10,6 +10,7 @@ const { server, app } = require("./services/Socket.io");
 // router imports
 const authRouter = require("./routes/userRoutes");
 const messageRouter = require("./routes/messageRoutes");
+const roomRouter = require("./routes/RoomRoutes");
 const chatRoomRouter = require("./routes/chatRoomRouter");
 
 const PORT = process.env.PORT || 8080;
@@ -23,6 +24,7 @@ app.use(express.urlencoded());
 // all routes
 app.use("/auth", authRouter);
 app.use("/message", messageRouter);
+app.use("/room", roomRouter);
 app.use("/chatroom", chatRoomRouter);
 
 // first test route

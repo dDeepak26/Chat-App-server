@@ -7,6 +7,11 @@ const RoomSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
+    adminUser: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+      required: true,
+    },
     users: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -19,5 +24,5 @@ const RoomSchema = new mongoose.Schema(
 );
 
 module.exports = {
-  RoomModal: mongoose.model("rooms", RoomSchema),
+  RoomModel: mongoose.model("rooms", RoomSchema),
 };

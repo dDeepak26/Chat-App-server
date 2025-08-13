@@ -17,17 +17,10 @@ const chatRoomSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
-    //   users: [
-    //     {
-    //       type: mongoose.Schema.Types.ObjectId,
-    //       ref: "users",
-    //       required: true,
-    //     },
-    //   ],
   },
   { timestamps: true }
 );
 
 module.exports = {
-  chatRoomModal: mongoose.model("chat rooms", chatRoomSchema),
+  chatRoomMsgModel: mongoose.model("chat rooms", chatRoomSchema),
 };

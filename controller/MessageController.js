@@ -1,4 +1,4 @@
-const { MessageModel } = require("../model/MessagesModal");
+const { MessageModel } = require("../model/MessagesModel");
 const { UserModel } = require("../model/UserModel");
 const { io } = require("../services/Socket.io");
 
